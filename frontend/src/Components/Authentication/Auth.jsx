@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { auth, provider } from "../../firebase-config.js";
 import { signInWithPopup } from "firebase/auth";
 import Cookies from "universal-cookie";
@@ -16,6 +16,10 @@ const Auth = ({ setIsAuth }) => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    document.title = "Login | RoomChats";
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-500 via-purple-500 to-blue-500 flex items-center justify-center px-4">

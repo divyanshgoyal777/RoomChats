@@ -13,7 +13,7 @@ import Cookies from "universal-cookie";
 import { signOut } from "firebase/auth";
 import { FiSend } from "react-icons/fi";
 import { FaSignOutAlt } from "react-icons/fa";
-import './chat.css';
+import "./chat.css";
 
 const cookies = new Cookies();
 
@@ -63,6 +63,10 @@ const Chat = ({ room, setIsAuth, setRoom }) => {
     setIsAuth(false);
     setRoom(null);
   };
+
+  useEffect(() => {
+    document.title = room + " | RoomChats";
+  }, []);
 
   return (
     <div className="relative flex flex-col h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white p-4">

@@ -1,8 +1,12 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { FaSignOutAlt } from "react-icons/fa";
 
 const RoomSelection = ({ setRoom, signUserOut }) => {
   const roomInputRef = useRef(null);
+
+  useEffect(() => {
+    document.title = "Join a Room | RoomChats";
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-pink-500 via-purple-500 to-blue-500 text-white p-6 animate-gradient">
