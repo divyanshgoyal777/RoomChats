@@ -7,6 +7,8 @@ import {
   query,
   where,
   orderBy,
+  doc,
+  getDoc,
 } from "firebase/firestore";
 import { auth, db } from "../../firebase-config";
 import Cookies from "universal-cookie";
@@ -22,6 +24,26 @@ const Chat = ({ room, setIsAuth, setRoom }) => {
   const messageRef = collection(db, "messages");
   const [messages, setMessages] = useState([]);
   const messagesEndRef = useRef(null);
+  const [isOwner, setIsOwner] = useState(false); 
+  const [roomCode, setRoomCode] = useState("");
+
+  useEffect(() => {
+    const fetchRoomData = async () => {
+      const roomRef = doc(db, "rooms", room);
+      const roomSnap = await getDoc(roomRef);
+      if (roomSnap.exists()) {
+        const roomData = roomSnap.data();
+        setRoomCode(roomData.code);
+        console.log(roomData.creator);
+        console.log(auth.currentUser.uid);
+        console.log(roomData === auth.currentUser.uid);
+        if (roomData.creator === auth.currentUser.uid) {
+          setIsOwner(true);
+        }
+      }
+    };
+    fetchRoomData();
+  }, [room]);
 
   useEffect(() => {
     const queryMessages = query(
@@ -79,6 +101,15 @@ const Chat = ({ room, setIsAuth, setRoom }) => {
       <div className="text-center text-2xl font-bold mb-4">
         Room: <span className="text-blue-400">{room}</span>
       </div>
+
+      {isOwner && (
+        <div className="text-green-400 text-center mb-2">
+          You are the owner of this room!
+          <br />
+          Room Code: <span className="font-semibold">{roomCode}</span>
+        </div>
+      )}
+
       <div className="flex-1 overflow-y-auto mb-4 p-2 space-y-4">
         {messages.map((message) => (
           <div
