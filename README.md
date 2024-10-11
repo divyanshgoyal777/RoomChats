@@ -5,8 +5,10 @@ RoomChats is a real-time, room-based chat application that allows users to engag
 ## Features
 
 - **Google Firebase Authentication**: Secure sign-in via Google, powered by Firebase Authentication.
-- **Room-Based Chats**: Users can join specific chat rooms for messaging.
+- **Room-Based Chats**: Users can create or join specific chat rooms for messaging.
+- **Room Code Generation**: A unique room code is generated when a new room is created. The room owner can view the code, and it is required for others to join the room.
 - **Real-Time Messaging**: Messages are updated instantly, stored in Firebase Cloud Firestore.
+- **React Hot Toast**: Provides elegant, customizable toast notifications for important updates.
 - **Responsive Design**: The app is fully responsive and optimized for all device sizes with Tailwind CSS.
 
 ## Live Preview
@@ -20,6 +22,7 @@ You can view the live preview [here](https://roomchats.netlify.app).
 - **Tailwind CSS**: Utility-first CSS framework for styling.
 - **React Router DOM**: For handling client-side routing.
 - **React Icons**: Icon library used for enhancing UI design.
+- **React Hot Toast**: For toast notifications.
 
 ### Backend
 - **Firebase Authentication**: Used for Google authentication and managing user sessions.
